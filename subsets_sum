@@ -1,0 +1,36 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+ bool helper(vector <int> arr,int tempSum,int sum,int i)
+ {
+     if(tempSum==sum)
+     {
+         return true;
+     }
+     if(i>=arr.size())
+     {
+         return false;
+     }
+     int recCall1=helper(arr,tempSum+arr[i],sum,i+1);
+     int recCall2=helper(arr,tempSum,sum,i+1);
+     return recCall1 || recCall2 ;
+ }
+int main()
+{   
+    int n;
+    cin>>n;
+    //important to declare size of vectors;
+    vector<int> v(n);
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+
+    }
+    int sum;
+    cin>>sum;
+    int k=helper(v,0,sum,0);
+    cout<<k;
+    return 0;
+}
+
